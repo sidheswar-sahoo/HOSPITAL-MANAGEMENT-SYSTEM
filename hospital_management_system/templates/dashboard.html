@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="mb-1">Dashboard</h2>
+        <p class="text-muted mb-0">Welcome to the Hospital Management System.</p>
+    </div>
+</div>
+
+<div class="row g-4 mb-4">
+    <div class="col-md-6 col-xl-3">
+        <div class="card stat-card h-100 border-0 shadow-sm">
+            <div class="card-body">
+                <h6 class="text-muted">Total Patients</h6>
+                <h2>{{ stats.patients }}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-xl-3">
+        <div class="card stat-card h-100 border-0 shadow-sm">
+            <div class="card-body">
+                <h6 class="text-muted">Total Doctors</h6>
+                <h2>{{ stats.doctors }}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-xl-3">
+        <div class="card stat-card h-100 border-0 shadow-sm">
+            <div class="card-body">
+                <h6 class="text-muted">Total Appointments</h6>
+                <h2>{{ stats.appointments }}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-xl-3">
+        <div class="card stat-card h-100 border-0 shadow-sm">
+            <div class="card-body">
+                <h6 class="text-muted">Scheduled</h6>
+                <h2>{{ stats.scheduled }}</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4">
+    <div class="col-lg-8">
+        <div class="card border-0 shadow-sm rounded-4">
+            <div class="card-body">
+                <h5 class="mb-3">Project Summary</h5>
+                <p class="mb-2">This project integrates a website with a MySQL database using Flask.</p>
+                <ul class="mb-0">
+                    <li>Patient records are stored in the <strong>patients</strong> table.</li>
+                    <li>Doctor records are stored in the <strong>doctors</strong> table.</li>
+                    <li>Appointments connect patients and doctors using <strong>foreign keys</strong>.</li>
+                    <li>Appointment list uses <strong>JOIN queries</strong> to display related data.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="card border-0 shadow-sm rounded-4">
+            <div class="card-body">
+                <h5 class="mb-3">Today</h5>
+                <p class="fs-2 fw-bold mb-1">{{ today_appointments }}</p>
+                <p class="text-muted mb-0">Appointments scheduled for today.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

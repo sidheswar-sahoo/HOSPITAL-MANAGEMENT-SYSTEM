@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Edit Patient{% endblock %}
+{% block content %}
+<div class="card border-0 shadow-sm rounded-4">
+    <div class="card-body">
+        <h3 class="mb-3">Edit Patient</h3>
+        <form method="post" class="row g-3">
+            <div class="col-md-6"><label class="form-label">Name</label><input class="form-control" name="name" value="{{ patient.name }}" required></div>
+            <div class="col-md-3"><label class="form-label">Age</label><input type="number" class="form-control" name="age" value="{{ patient.age }}" required></div>
+            <div class="col-md-3">
+                <label class="form-label">Gender</label>
+                <select class="form-select" name="gender" required>
+                    <option value="Male" {% if patient.gender=='Male' %}selected{% endif %}>Male</option>
+                    <option value="Female" {% if patient.gender=='Female' %}selected{% endif %}>Female</option>
+                    <option value="Other" {% if patient.gender=='Other' %}selected{% endif %}>Other</option>
+                </select>
+            </div>
+            <div class="col-md-6"><label class="form-label">Phone</label><input class="form-control" name="phone" value="{{ patient.phone }}" required></div>
+            <div class="col-md-6"><label class="form-label">Disease</label><input class="form-control" name="disease" value="{{ patient.disease }}" required></div>
+            <div class="col-12"><label class="form-label">Address</label><textarea class="form-control" name="address" rows="3" required>{{ patient.address }}</textarea></div>
+            <div class="col-12"><button class="btn btn-primary">Update</button> <a class="btn btn-secondary" href="{{ url_for('patients') }}">Cancel</a></div>
+        </form>
+    </div>
+</div>
+{% endblock %}

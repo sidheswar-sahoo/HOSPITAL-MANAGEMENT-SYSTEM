@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}Add Appointment{% endblock %}
+{% block content %}
+<div class="card border-0 shadow-sm rounded-4">
+    <div class="card-body">
+        <h3 class="mb-3">Book Appointment</h3>
+        <form method="post" class="row g-3">
+            <div class="col-md-6">
+                <label class="form-label">Patient</label>
+                <select class="form-select" name="patient_id" required>
+                    <option value="">Select Patient</option>
+                    {% for patient in patients %}
+                    <option value="{{ patient.patient_id }}">{{ patient.name }} (ID: {{ patient.patient_id }})</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Doctor</label>
+                <select class="form-select" name="doctor_id" required>
+                    <option value="">Select Doctor</option>
+                    {% for doctor in doctors %}
+                    <option value="{{ doctor.doctor_id }}">Dr. {{ doctor.name }} - {{ doctor.specialization }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-4"><label class="form-label">Date</label><input type="date" class="form-control" name="appointment_date" required></div>
+            <div class="col-md-4"><label class="form-label">Time</label><input type="time" class="form-control" name="appointment_time" required></div>
+            <div class="col-md-4">
+                <label class="form-label">Status</label>
+                <select class="form-select" name="status" required>
+                    <option>Scheduled</option><option>Completed</option><option>Cancelled</option>
+                </select>
+            </div>
+            <div class="col-12"><button class="btn btn-primary">Save</button> <a class="btn btn-secondary" href="{{ url_for('appointments') }}">Cancel</a></div>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+body {
+    background: #f4f7fb;
+}
+
+.login-page {
+    background: linear-gradient(135deg, #e9f2ff, #f8fbff);
+}
+
+.card {
+    border-radius: 1rem;
+}
+
+.stat-card {
+    background: #ffffff;
+    transition: transform 0.2s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+}
+
+.table th,
+.table td {
+    vertical-align: middle;
+}

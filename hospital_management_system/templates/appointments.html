@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block title %}Appointments{% endblock %}
+{% block content %}
+<div class="card border-0 shadow-sm rounded-4">
+    <div class="card-body">
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-3">
+            <h3 class="mb-0">Appointments</h3>
+            <a href="{{ url_for('add_appointment') }}" class="btn btn-primary">Book Appointment</a>
+        </div>
+        <form class="row g-2 mb-3" method="get">
+            <div class="col-md-4">
+                <select class="form-select" name="status">
+                    <option value="">All Status</option>
+                    <option value="Scheduled" {% if status=='Scheduled' %}selected{% endif %}>Scheduled</option>
+                    <option value="Completed" {% if status=='Completed' %}selected{% endif %}>Completed</option>
+                    <option value="Cancelled" {% if status=='Cancelled' %}selected{% endif %}>Cancelled</option>
+                </select>
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-outline-primary" type="submit">Filter</button>
+                <a href="{{ url_for('appointments') }}" class="btn btn-outline-secondary">Reset</a>
+            </div>
+        </form>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>ID</th><th>Patient</th><th>Doctor</th><th>Specialization</th><th>Date</th><th>Time</th><th>Status</th><th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for appointment in appointments %}
+                    <tr>
+                        <td>{{ appointment.appointment_id }}</td>
+                        <td>{{ appointment.patient_name }}</td>
+                        <td>{{ appointment.doctor_name }}</td>
+                        <td>{{ appointment.specialization }}</td>
+                        <td>{{ appointment.appointment_date }}</td>
+                        <td>{{ appointment.appointment_time }}</td>
+                        <td><span class="badge text-bg-{% if appointment.status=='Scheduled' %}primary{% elif appointment.status=='Completed' %}success{% else %}secondary{% endif %}">{{ appointment.status }}</span></td>
+                        <td class="text-nowrap">
+                            <a href="{{ url_for('edit_appointment', appointment_id=appointment.appointment_id) }}" class="btn btn-sm btn-warning">Edit</a>
+                            <a href="{{ url_for('delete_appointment', appointment_id=appointment.appointment_id) }}" class="btn btn-sm btn-danger" onclick="return confirmDelete('appointment')">Delete</a>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr><td colspan="8" class="text-center text-muted">No appointments found.</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
