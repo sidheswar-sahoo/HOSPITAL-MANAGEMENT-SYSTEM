@@ -1,4 +1,4 @@
-# 🏥 Hospital Management System
+# Hospital Management System
 
 A web-based **Hospital Management System** built with **Flask** and **MySQL**. It lets an administrator manage patients, doctors, and appointments through a clean Bootstrap interface. Built as a DBMS mini project to demonstrate relational database design and CRUD operations in a real web app.
 
